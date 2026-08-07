@@ -31,6 +31,9 @@ complexity out of scope for a 3-hour assessment.
 
 ```
 goqii-playwright-ts/
+├── .github/
+│   └── workflows/
+│       └── ci.yml         # GitHub Actions CI workflow
 ├── pages/
 │   ├── BasePage.ts        # shared navigation helper, extended by all page objects
 │   ├── LoginPage.ts        # login form + error assertions
@@ -64,9 +67,10 @@ Requires Node.js 18+.
 
 ```bash
 npm install
-npx playwright install chromium
+npx playwright install chromium webkit
 ```
 For CI, this repository installs browser dependencies for both desktop and mobile emulation.
+
 ## Running the tests
 
 ```bash
