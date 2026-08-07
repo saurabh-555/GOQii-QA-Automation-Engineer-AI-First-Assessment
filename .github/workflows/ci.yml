@@ -16,6 +16,8 @@ jobs:
     strategy:
       matrix:
         node-version: [24.x]
+    env:
+      ENABLE_EMAIL_NOTIFICATIONS: ${{ secrets.ENABLE_EMAIL_NOTIFICATIONS }}
 
     steps:
       - name: Checkout repository
@@ -27,10 +29,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install chromium
+        run: npx playwright install chromium webkit
 
       - name: Run Playwright tests
         run: npm test
@@ -52,7 +54,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Send pass/fail email notification
-        if: always()
+        if: always() && env.ENABLE_EMAIL_NOTIFICATIONS == 'true' && secrets.SMTP_SERVER != '' && secrets.SMTP_PORT != '' && secrets.SMTP_USERNAME != '' && secrets.SMTP_PASSWORD != '' && secrets.EMAIL_FROM != '' && secrets.EMAIL_TO != ''
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}

@@ -1,11 +1,13 @@
 # Task 3 — Automation Challenge (Playwright + TypeScript)
 
+![Playwright CI](https://github.com/saurabh-555/GOQii-QA-Automation-Engineer-AI-First-Assessment/actions/workflows/ci.yml/badge.svg)
+
 **Site under test:** [https://www.saucedemo.com](https://www.saucedemo.com)
 **Flow automated:** Login → Search Product → Add Product to Cart → Verify Cart → Logout
 
 ## To run the test
 npm install
-npx playwright install chromium
+npx playwright install chromium webkit
 npm test
 
 ## Why saucedemo.com
@@ -64,7 +66,7 @@ Requires Node.js 18+.
 npm install
 npx playwright install chromium
 ```
-
+For CI, this repository installs browser dependencies for both desktop and mobile emulation.
 ## Running the tests
 
 ```bash
@@ -89,12 +91,24 @@ npx playwright test -g "user can log in, find a product"
 
 This repository includes a GitHub Actions workflow at `.github/workflows/ci.yml` that:
 
-- installs Node.js and dependencies
-- installs the Chromium browser for Playwright
-- runs the test suite with `npm test`
+- installs Node.js and dependencies using `npm ci`
+- installs Chromium and WebKit browsers for Playwright
+- runs the test suite with `npm test` (desktop + mobile projects)
 - uploads the HTML report and test result artifacts on every run
 
 The workflow triggers on `push` and `pull_request` to `main`/`master`.
+
+To enable email notifications, add these GitHub Actions secrets:
+
+- `ENABLE_EMAIL_NOTIFICATIONS` = `true`
+- `SMTP_SERVER`
+- `SMTP_PORT`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `EMAIL_FROM`
+- `EMAIL_TO`
+
+If `ENABLE_EMAIL_NOTIFICATIONS` is not set to `true`, the email step is skipped and the workflow will still pass or fail normally.
 
 ## Test coverage in this file
 
