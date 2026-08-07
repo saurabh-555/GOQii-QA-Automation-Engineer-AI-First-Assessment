@@ -68,9 +68,15 @@ npx playwright install chromium
 ## Running the tests
 
 ```bash
-npm test              # headless run, all tests
+npm test              # headless run, all tests (desktop + mobile projects)
 npm run test:headed   # headed (visible browser) run
 npm run report        # open the last HTML report
+```
+
+To run only the mobile emulation project:
+
+```bash
+npx playwright test --project=mobile
 ```
 
 A single test can be run directly:
