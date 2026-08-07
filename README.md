@@ -88,6 +88,4 @@ npx playwright test -g "user can log in, find a product"
 2. **Bonus negative path** — `locked_out_user` attempts login and is asserted to see
    the "locked out" error message, reusing the same `LoginPage` object.
 
-## Note on this sandbox
-
 
