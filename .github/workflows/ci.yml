@@ -54,7 +54,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Send pass/fail email notification
-        if: always() && env.ENABLE_EMAIL_NOTIFICATIONS == 'true' && secrets.SMTP_SERVER != '' && secrets.SMTP_PORT != '' && secrets.SMTP_USERNAME != '' && secrets.SMTP_PASSWORD != '' && secrets.EMAIL_FROM != '' && secrets.EMAIL_TO != ''
+        if: always() && env.ENABLE_EMAIL_NOTIFICATIONS == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
