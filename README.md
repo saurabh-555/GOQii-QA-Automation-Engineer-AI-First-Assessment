@@ -79,6 +79,17 @@ A single test can be run directly:
 npx playwright test -g "user can log in, find a product"
 ```
 
+## CI/CD Integration
+
+This repository includes a GitHub Actions workflow at `.github/workflows/ci.yml` that:
+
+- installs Node.js and dependencies
+- installs the Chromium browser for Playwright
+- runs the test suite with `npm test`
+- uploads the HTML report and test result artifacts on every run
+
+The workflow triggers on `push` and `pull_request` to `main`/`master`.
+
 ## Test coverage in this file
 
 1. **Happy path** — `standard_user` logs in, finds "Sauce Labs Backpack" via the
